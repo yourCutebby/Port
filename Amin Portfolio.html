@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mohammad Amin Hossain Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#0f1530;
+      --muted:#9db0ff;
+      --text:#e6ebff;
+      --sub:#b9c6ff;
+      --neon:#3b82f6;    /* neon blue */
+      --neon-2:#60a5fa;  /* light neon */
+      --accent:#1d4ed8;
+      --card:#0e142b;
+      --line: rgba(59,130,246,.35);
+      --radius: 18px;
+      --shadow: 0 20px 60px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+    a{color:var(--muted);text-decoration:none}
+    img{max-width:100%;display:block}
+    /* header */
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(10px);
+      background:linear-gradient(180deg, rgba(10,16,32,.85), rgba(10,16,32,.35));
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+    .logo-dot{width:12px;height:12px;border-radius:50%;
+      background: radial-gradient(120% 120% at 30% 30%, #9cc5ff 0%, var(--neon) 40%, #0ea5e9 70%, transparent 75%);
+      box-shadow: 0 0 24px var(--neon);
+    }
+    .nav a{font-weight:600;padding:8px 12px;border-radius:10px;transition:all .25s ease}
+    .nav a:hover{background:rgba(59,130,246,.12);color:#fff}
+    .links{display:flex;gap:8px;align-items:center}
+    .mobile{display:none}
+    /* hero */
+    .hero{
+      position:relative;min-height:68vh;display:grid;place-items:center;overflow:hidden;
+      background:
+        radial-gradient(60% 60% at 20% 10%, rgba(96,165,250,.15), transparent 60%),
+        radial-gradient(60% 60% at 80% 0%, rgba(59,130,246,.18), transparent 60%),
+        linear-gradient(180deg, rgba(13,19,45,1), rgba(7,12,28,1));
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background:url('') center/cover no-repeat;
+      opacity:.18;filter:contrast(110%) saturate(120%);
+    }
+    .hero::after{
+      content:"";position:absolute;inset:-40px;
+      background: radial-gradient(50% 50% at 50% 30%, rgba(59,130,246,.25), transparent 60%);
+      mix-blend: screen;pointer-events:none;
+    }
+    .hero-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 20px;text-align:center}
+    .kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;
+      color:var(--sub);text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;background:rgba(17,24,39,.35)}
+    .title{font-size: clamp(28px, 5vw, 56px);line-height:1.1;margin:16px 0 10px;font-weight:800;letter-spacing:-.02em}
+    .subtitle{font-size: clamp(16px, 2.5vw, 20px);color: var(--sub);max-width:780px;margin:0 auto}
+    .cta{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      padding:12px 18px;border-radius:12px;font-weight:700;border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(59,130,246,.25), rgba(59,130,246,.05));
+      box-shadow: var(--shadow);color:#eaf1ff;transition: all .2s ease;
+    }
+    .btn:hover{transform: translateY(-2px); box-shadow: 0 24px 60px rgba(59,130,246,.25);}
+    .btn.secondary{background:transparent}
+    /* layout */
+    .section{padding:80px 20px}
+    .container{max-width:1100px;margin:0 auto}
+    .grid{display:grid;gap:24px}
+    .two{grid-template-columns:1.2fr .8fr}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{
+      background: linear-gradient(180deg, rgba(27,36,74,.6), rgba(16,22,48,.7));
+      border:1px solid var(--line); border-radius: var(--radius); padding:20px; box-shadow: var(--shadow);
+    }
+    .card h3{margin:0 0 6px;font-size:1.05rem}
+    .muted{color:var(--sub)}
+    .chip{display:inline-block;margin:6px 6px 0 0;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(59,130,246,.08);font-size:.85rem;color:#dfe6ff}
+    .timeline{display:grid;gap:14px}
+    .item{padding:16px;border-radius:16px;border:1px dashed var(--line);background:rgba(12,18,40,.6)}
+    .item .when{font-size:.85rem;color:var(--muted)}
+    .item .role{font-weight:700}
+    .divider{height:1px;background:linear-gradient(90deg, transparent, var(--line), transparent);margin:28px 0}
+    /* portfolio */
+    .work{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .work .w{position:relative;overflow:hidden;border-radius:16px;border:1px solid var(--line);background:#0e142b}
+    .w img{aspect-ratio:16/10;width:100%;object-fit:cover;opacity:.9;transition:transform .35s ease, opacity .35s ease}
+    .w:hover img{transform:scale(1.05);opacity:1}
+    .w .info{position:absolute;left:10px;bottom:10px;background:rgba(5,10,25,.6);backdrop-filter: blur(6px);padding:10px 12px;border-radius:12px;border:1px solid var(--line)}
+    .w .tag{font-size:.75rem;color:#cfe0ff}
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    input, textarea{
+      background:#0b132b;border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:#fff;
+      outline:none;transition:border .2s ease, box-shadow .2s ease;
+    }
+    input:focus, textarea:focus{border-color:var(--neon);box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+    textarea{min-height:120px;resize:vertical}
+    .footer{padding:32px 20px;border-top:1px solid var(--line);color:var(--sub);text-align:center}
+    /* responsive */
+    @media (max-width: 900px){
+      .two{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .links{display:none}
+      .mobile{display:inline-flex;gap:8px}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+
+        
+        <span>&nbsp;
+
+        </span>
+      </div>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#portfolio">Project</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="mobile">
+        <a href="#contact"><i class="fa-regular fa-paper-plane"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO with abstract image at top -->
+  <section class="hero" aria-label="Hero with abstract creative image">
+    <div class="hero-wrap">
+      <span class="kicker"><i class="fa-solid fa-sparkles"></i> 👋 Hello, welcome to my portfolio! </span>
+      <h1 class="title"> Mohammad Amin Hossain</h1>
+      <p class="subtitle">Computer Science student at AIUB and graphic designer focused on brand identity, clean interfaces, and memorable visuals.</p>
+      <div class="cta">
+        <a class="btn" href="#portfolio"><i class="fa-solid fa-grid-2"></i> View Work</a>
+        <a class="btn secondary" href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container grid two">
+      <div>
+        <h2>About</h2>
+        <img src="Amin90.png" alt="Profile Photo" style="width:180px;height:180px;border-radius:50%;box-shadow:0 0 0 3px rgba(59,130,246,.4);margin-top:16px;margin-bottom:20px"/>
+        <p class="muted">
+          I’m a Computer Science student with a passion for design. I combine technical foundations with visual storytelling to ship
+          work that’s both functional and beautiful — from brand identities to responsive web interfaces.
+        </p>
+        <div class="divider"></div>
+        <div class="cards">
+          <div class="card">
+            <h3>Based in</h3>
+            <div class="muted">Dhaka, Bangladesh</div>
+          </div>
+          <div class="card">
+            <h3>What I love</h3>
+            <div class="muted">Printing And Web Design</div>
+          </div>
+          <div class="card">
+            <h3>Currently</h3>
+            <div class="muted">BSc in CSE @ AIUB (Expected 2027)</div>
+          </div>
+        </div>
+      </div>
+      <aside>
+        <div class="card">
+          <h3>Quick Links</h3>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+            <a class="chip" href="#skills">Skills</a>
+            <a class="chip" href="#experience">Experience</a>
+            <a class="chip" href="#education">Education</a>
+            <a class="chip" href="#portfolio">Project</a>
+            <a class="chip" href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <h3>Highlights</h3>
+          <ul class="muted" style="margin:8px 0 0 18px">
+            <li>Freelance contest participant (Fiverr / Freelancer)</li>
+            <li>Branding, brochures, business cards</li>
+            <li>Front‑end basics: HTML, CSS, Tailwind, basic JS</li>
+          </ul>
+        </div>
+      
+        <div class="card" style="margin-top:14px">
+          <h3>Hobbies</h3>
+          <ul class="muted" style="margin:8px 0 0 18px">
+            <li>Exploring UI trends & creative designs</li>
+           
+            <li>Learning new coding techniques</li>
+            <li>Playing Pc And Mobile Games</li>
+            <li>Watching Movies</li>
+          </ul>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="divider"></div>
+      <div class="cards">
+        <div class="card">
+          <h3>Design Skills</h3>
+          <div>
+            <span class="chip">Logo Design</span>
+            <span class="chip">Brochure Design</span>
+            <span class="chip">Business Card</span>
+            <span class="chip">Branding</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Design Software</h3>
+          <div>
+            <span class="chip">Photoshop</span>
+            <span class="chip">Illustrator</span>
+           
+          
+          
+
+           
+            <span class="chip">Canva</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Front‑end Basics</h3>
+          <div>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            
+            <span class="chip">Basic JavaScript</span>
+          </div>
+        </div>
+        
+      
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="divider"></div>
+      <div class="timeline">
+        <div class="item">
+          <div class="when">Jan 2023 — Present ·  IT Center</div>
+          <div class="role">Design Projects & Freelance Contest Participant</div>
+          <div class="muted">
+            Completed logo, brochure, and business card projects through class assignments and IT center work.
+            Participated in freelance design contests (Fiverr / Freelancer)
+
+          </div>
+        </div>
+        
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2>Education</h2>
+      <div class="divider"></div>
+      <div class="cards">
+        <div class="card">
+          <h3>American International University‑Bangladesh (AIUB)</h3>
+          <div class="muted">BSc in Computer Science <br> Expected Graduation 2027</div>
+        </div>
+        <div class="card">
+          <h3>BAF Shaheen College, Kurmitola</h3>
+          <div class="muted">HSC - 2022  
+            <br> GPA - 4.83 out of 5.00</div>
+        </div>
+        <div class="card">
+          <h3>Safiuddin Sarker Academy and College</h3>
+          <div class="muted">SSC - 2020  <br> GPA - 5.00 out of 5.00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <h2>Projects And Works</h2>
+      <div class="divider"></div>
+      <div class="work">
+        <a class="w" href="#" target="_blank" rel="noreferrer">
+          <img src="cg.png" alt="EduConnect UI Case Study mockup" />
+          <div class="info">
+            <div class="tag"><strong>AIUB Cg calculator</strong> </div>
+          </div>
+        </a>
+        <a class="w" href="#" target="_blank" rel="noreferrer">
+          <img src="ssn.png" alt="Screen Shot Notes" />
+          <div class="info">
+            <div class="tag"><strong>Screen Shot Notes</strong> </div>
+          </div>
+        </a>
+        <a class="w" href="#" target="_blank" rel="noreferrer">
+          <img src="pdf.png" alt="Pdf Merger" />
+          <div class="info">
+            <div class="tag"><strong>Pdf Merger</strong> </div>
+          </div>
+        </a>
+ 
+        <a class="w" href="#" target="_blank" rel="noreferrer">
+          <img src="Dipty-mam-card.jpg" alt="Pdf Merger" />
+          <div class="info">
+            <div class="tag"><strong>Businees Card</strong> </div>
+          </div>
+        </a>   
+
+      </div>
+
+      <div class="divider"></div>
+      <div class="cards">
+        <div class="card">
+          <h3>Certifications</h3>
+          <div class="muted">
+            <h3>Professional Graphic Designing</h3>
+             Projuktir Pathshala Institute
+            <br> (6 month training course)
+
+          </div>
+      
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact</h2>
+      <div class="divider"></div>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Get in touch</h3>
+          <p class="muted">Open to internships, freelance, and collaboration.</p>
+          <div style="display:grid;gap:10px;margin-top:8px">
+            <div><i class="fa-solid fa-location-dot"></i> Dhaka, Bangladesh</div>
+            <div><i class="fa-solid fa-envelope"></i> aminhossain09@gmail.com</div>
+            <div><i class="fa-solid fa-phone"></i> +880 1688-801427</div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <a class="chip" href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="chip" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a class="chip" href="#" aria-label="Behance"><i class="fa-brands fa-behance"></i> Behance</a>
+            <a class="chip" href="#" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i> Dribbble</a>
+          </div>
+        </div>
+        <form class="card" onsubmit="event.preventDefault(); alert('Thanks! This demo form does not submit.');">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Say hello..." required></textarea>
+          </div>
+          <button class="btn" type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © <span id="y"></span> Amin Hossain — All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
